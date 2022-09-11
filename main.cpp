@@ -41,6 +41,17 @@ public:
         }
         return *this;
     }
+    big_integer& operator =(big_integer &&other) {
+        if (this != &other) {
+            m_size = other.m_size;
+            delete[] m_nums;
+            m_nums = new int[other.m_size + 1];
+            for (int i=0; i<other.m_size; i++) {
+                m_nums[i] = other.m_nums[i];
+            }
+        }
+        return *this;
+    }
     big_integer operator +(big_integer &other) {
         for (int i = 0; i < std::max(m_size,other.m_size); i++) {
             if ((i < m_size) && (i < other.m_size)) {
