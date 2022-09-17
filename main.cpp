@@ -20,6 +20,7 @@ public:
     }
     big_integer(big_integer&& other) {
         m_size = other.m_size;
+        other.m_size = 0;
         m_nums.resize(m_size);
         m_nums = std::move(other.m_nums);
     }
@@ -39,6 +40,7 @@ public:
     big_integer& operator =(big_integer &&other) {
         if (this != &other) {
             m_size = other.m_size;
+            other.m_size = 0;
             m_nums.resize(m_size);
             m_nums = std::move(other.m_nums);
         }
